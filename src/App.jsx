@@ -1,5 +1,6 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
+import {Link} from 'inferno-router';
 
 
 export class App extends Component {
@@ -7,6 +8,7 @@ export class App extends Component {
     return (
       <div>
         Hello Powietrze from Inferno!
+        {this.props.children}
       </div>
     );
   }
