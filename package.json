@@ -1,0 +1,25 @@
+{
+  "name": "powietrze-webapp",
+  "version": "0.0.1",
+  "repository": "git@github.com:powietrze/webapp.git",
+  "author": "Tomasz Netczuk <contact@netczuk.pl>",
+  "license": "MIT",
+  "dependencies": {
+    "html-webpack-plugin": "2.26.0",
+    "webpack": "2.2.0-rc.3",
+    "webpack-dev-server": "1.16.2"
+  },
+  "devDependencies": {
+    "eslint": "3.13.0",
+    "eslint-config-airbnb": "13.0.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "2.2.3",
+    "eslint-plugin-react": "6.8.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --port 8082",
+    "build": "webpack",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  }
+}
