@@ -1,0 +1,5 @@
+@import './NavBar.css';
+
+.root {
+  padding-top: var(--nav-bar-height);
+}

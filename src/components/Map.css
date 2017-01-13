@@ -1,0 +1,7 @@
+@import './constants.css';
+
+.map {
+  height: 100vw;
+
+  border: 1pt solid var(--black);
+}

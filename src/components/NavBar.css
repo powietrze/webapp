@@ -1,0 +1,25 @@
+@import './constants.css';
+
+:root {
+  --nav-bar-height: 3rem;
+}
+
+.navBar {
+  font-family: var(--font-family);
+  font-size: var(--font-size-big);
+
+  height: var(--nav-bar-height);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  border: solid 1pt var(--black);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+}

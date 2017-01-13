@@ -3,6 +3,7 @@
     "es2015"
   ],
   "plugins": [
-    "inferno"
+    "inferno",
+    "transform-class-properties"
   ]
 }

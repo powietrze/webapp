@@ -1,0 +1,9 @@
+@import './constants.css';
+
+.station {
+  font-family: var(--font-family);
+  font-size: var(--font-size-normal);
+  border: 1pt solid var(--black);
+  padding: var(--font-size-small);
+  margin: 0 12pt;
+}

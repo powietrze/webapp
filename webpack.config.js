@@ -23,6 +23,22 @@ module.exports = {
         ],
         loader: 'babel-loader',
       },
+      {
+        test: /\.css?$/,
+        include: [
+          path.resolve(__dirname, 'src'),
+        ],
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]-[local]__[hash:base64:5]',
+            },
+          },
+        ],
+      },
     ],
   },
 };
