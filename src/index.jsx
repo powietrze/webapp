@@ -13,9 +13,9 @@ import {StationDetails} from './components';
 
 const routes = (
   <Router history={ createHistory() }>
-    <Route path="/" component={Root}>
+    <Route path={Root.path} component={Root}>
       <IndexRoute component={Main}/>
-      <Route path="/station/:id" component={StationDetails}/>
+      <Route path={StationDetails.path} component={StationDetails}/>
     </Route>
   </Router>
 );

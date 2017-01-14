@@ -1,7 +1,11 @@
-import React, {PureComponent} from 'react';
+import React, {
+  PureComponent
+} from 'react';
 
 
 export class StationDetails extends PureComponent {
+  static path = '/station/:id/';
+
   render() {
     return (
       <div>
