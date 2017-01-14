@@ -1,6 +1,8 @@
+/* eslint-global window */
+
 import React, {
   PureComponent,
-  PropTypes
+  PropTypes,
 } from 'react';
 
 import styles from './NavBar.css';
@@ -13,7 +15,7 @@ export class NavBar extends PureComponent {
   };
 
   render() {
-    const {showBackButton, onPop} = this.props;
+    const { showBackButton, onPop } = this.props;
     return (
       <div className={styles.navBar}>
         {showBackButton && <button onClick={onPop}>back</button>}

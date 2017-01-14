@@ -1,13 +1,21 @@
 import React, {
-  PureComponent
+  PureComponent,
+  PropTypes,
 } from 'react';
 
 import './body.css';
-import {NavBar} from './NavBar.jsx';
+import { NavBar } from './NavBar';
 import styles from './Root.css';
 
 
 export class Root extends PureComponent {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    router: PropTypes.shape({
+      goBack: PropTypes.func.isRequired,
+    }),
+  };
+
   static path = '/';
 
   handlePop = () => {
@@ -15,12 +23,12 @@ export class Root extends PureComponent {
   };
 
   render() {
-    const {router} = this.props;
+    const { router } = this.props;
     const showBackButton = !router.isActive(Root.path, true);
 
     return (
       <div className={styles.root}>
-        <NavBar showBackButton={showBackButton} onPop={this.handlePop}/>
+        <NavBar showBackButton={showBackButton} onPop={this.handlePop} />
         {this.props.children}
       </div>
     );

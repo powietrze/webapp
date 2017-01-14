@@ -1,12 +1,17 @@
 import React, {
-  PureComponent
+  PureComponent,
+  PropTypes,
 } from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 
 import styles from './Station.css';
 
 
 export class Station extends PureComponent {
+  static propTypes = {
+    children: PropTypes.string.isRequired,
+  };
+
   render() {
     return (
       <div className={styles.station}>

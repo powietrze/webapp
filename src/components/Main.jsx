@@ -1,14 +1,14 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 
-import {Map} from './Map.jsx';
-import {Station} from './Station.jsx';
+import { Map } from './Map';
+import { Station } from './Station';
 
 
 export class Main extends PureComponent {
   render() {
     return (
       <div>
-        <Map/>
+        <Map />
         <Station>Stacja 1</Station>
         <Station>Stacja 2</Station>
         <Station>Stacja 3</Station>

@@ -1,7 +1,7 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import Script from 'scriptjs';
 
-import {config} from '../config';
+import { config } from '../config';
 import styles from './Map.css';
 
 
@@ -13,7 +13,7 @@ export class Map extends PureComponent {
   }
 
   initializeMap = () => {
-    const googleMap = new google.maps.Map(this.mapNode, {
+    const googleMap = new window.google.maps.Map(this.mapNode, {
       disableDefaultUI: true,
       zoomControl: true,
     });
@@ -25,9 +25,13 @@ export class Map extends PureComponent {
     });
   };
 
+  saveNode = (node) => {
+    this.mapNode = node;
+  };
+
   render() {
     return (
-      <div className={styles.map} ref={node => this.mapNode = node}></div>
+      <div className={styles.map} ref={this.saveNode} />
     );
   }
 }

@@ -15,7 +15,7 @@ module.exports = {
       template: 'src/index.html',
     }),
     new webpack.DefinePlugin({
-      'GOOGLE_MAPS_API_KEY': JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
+      GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
     }),
   ],
   module: {
@@ -43,6 +43,12 @@ module.exports = {
           },
         ],
       },
+    ],
+  },
+  resolve: {
+    extensions: [
+      '.js',
+      '.jsx',
     ],
   },
 };

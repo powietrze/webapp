@@ -1,9 +1,16 @@
 import React, {
-  PureComponent
+  PureComponent,
+  PropTypes,
 } from 'react';
 
 
 export class StationDetails extends PureComponent {
+  static propTypes = {
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  };
+
   static path = '/station/:id/';
 
   render() {
