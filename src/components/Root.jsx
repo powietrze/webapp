@@ -1,12 +1,11 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import React, {PureComponent} from 'react';
 
 import './body.css';
 import {NavBar} from './NavBar.jsx';
 import styles from './Root.css';
 
 
-export class Root extends Component {
+export class Root extends PureComponent {
   render() {
     return (
       <div className={styles.root}>

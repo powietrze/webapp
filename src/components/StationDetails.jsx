@@ -1,9 +1,7 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-import {Link} from 'inferno-router';
+import React, {PureComponent} from 'react';
 
 
-export class StationDetails extends Component {
+export class StationDetails extends PureComponent {
   render() {
     return (
       <div>

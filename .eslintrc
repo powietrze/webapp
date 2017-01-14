@@ -1,9 +1,5 @@
 {
   "extends": [
-    "airbnb",
-    "plugin:inferno/recommended"
-  ],
-  "plugins": [
-    "inferno"
+    "airbnb"
   ]
 }

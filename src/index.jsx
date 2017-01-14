@@ -1,9 +1,10 @@
 /* eslint-env browser */
 
 
-import Inferno from 'inferno';
-import {Router, Route, IndexRoute, Link} from 'inferno-router';
-import {createBrowserHistory} from 'history';
+import ReactDOM from 'react-dom';
+import React from 'react';
+import {Router, Route, IndexRoute} from 'react-router';
+import {createHistory} from 'history';
 
 import {Root} from './components';
 import {Main} from './components';
@@ -11,12 +12,12 @@ import {StationDetails} from './components';
 
 
 const routes = (
-  <Router history={ createBrowserHistory() }>
-    <Route component={Root}>
+  <Router history={ createHistory() }>
+    <Route path="/" component={Root}>
       <IndexRoute component={Main}/>
       <Route path="/station/:id" component={StationDetails}/>
     </Route>
   </Router>
 );
 
-Inferno.render(routes, document.getElementById('root'));
+ReactDOM.render(routes, document.getElementById('root'));

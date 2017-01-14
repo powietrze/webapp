@@ -1,11 +1,10 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import React, {PureComponent} from 'react';
 
 import {Map} from './Map.jsx';
 import {Station} from './Station.jsx';
 
 
-export class Main extends Component {
+export class Main extends PureComponent {
   render() {
     return (
       <div>
