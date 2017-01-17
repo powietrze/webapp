@@ -14,9 +14,14 @@ export class Root extends PureComponent {
     router: PropTypes.shape({
       goBack: PropTypes.func.isRequired,
     }),
+    fetchStations: PropTypes.func.isRequired,
   };
 
   static path = '/';
+
+  componentDidMount = () => {
+    this.props.fetchStations();
+  };
 
   handlePop = () => {
     this.props.router.goBack();
