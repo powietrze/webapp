@@ -16,6 +16,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
+      API_HOST: JSON.stringify(process.env.API_HOST),
     }),
   ],
   module: {

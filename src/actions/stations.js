@@ -1,3 +1,6 @@
+import * as network from '../network';
+
+
 export const FETCH_STATIONS_REQUEST = 'FETCH_STATIONS_REQUEST';
 export const FETCH_STATIONS_SUCCESS = 'FETCH_STATIONS_SUCCESS';
 export const FETCH_STATIONS_FAILURE = 'FETCH_STATIONS_FAILURE';
@@ -19,9 +22,7 @@ export const fetchStationsFailure = error => ({
 export const fetchStations = () => (dispatch) => {
   dispatch(fetchStationsRequest());
 
-  return new Promise((resolve) => {
-    setTimeout(resolve, 2000);
-  })
-    .then(() => dispatch(fetchStationsSuccess([])))
+  return network.fetchStations()
+    .then(stations => dispatch(fetchStationsSuccess(stations)))
     .catch(e => dispatch(fetchStationsFailure(e)));
 };
