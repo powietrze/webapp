@@ -9,11 +9,11 @@ const initialState = {
 export const stations = (state = initialState, action) => {
   switch (action.type) {
     case actions.FETCH_STATIONS_REQUEST:
-      return {isLoading: true};
+      return { isLoading: true };
     case actions.FETCH_STATIONS_SUCCESS:
-      return {isLoading: false};
+      return { isLoading: false };
     case actions.FETCH_STATIONS_FAILURE:
-      return {isLoading: false};
+      return { isLoading: false };
 
     default:
       return state;

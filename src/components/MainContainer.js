@@ -1,10 +1,9 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {Main} from './Main';
+import { Main } from './Main';
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isLoadingStations: state.isLoading,
 });
 

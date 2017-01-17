@@ -3,8 +3,8 @@ import React, {
   PropTypes,
 } from 'react';
 
-import {Map} from './Map';
-import {StationList} from './StationList';
+import { Map } from './Map';
+import { StationList } from './StationList';
 
 
 export class Main extends PureComponent {
@@ -13,12 +13,12 @@ export class Main extends PureComponent {
   };
 
   render() {
-    const {isLoadingStations} = this.props;
+    const { isLoadingStations } = this.props;
 
     return (
       <div>
         <Map />
-        <StationList isLoading={isLoadingStations}/>
+        <StationList isLoading={isLoadingStations} />
       </div>
     );
   }

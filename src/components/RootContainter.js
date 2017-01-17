@@ -1,8 +1,7 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {Root} from './Root';
-import {fetchStations} from '../actions';
+import { Root } from './Root';
+import { fetchStations } from '../actions';
 
 
 const mapDispatchToProps = {

@@ -3,7 +3,7 @@ import React, {
   PropTypes,
 } from 'react';
 
-import {Station} from './Station';
+import { Station } from './Station';
 
 export class StationList extends PureComponent {
   static propTypes = {
@@ -11,7 +11,7 @@ export class StationList extends PureComponent {
   };
 
   render() {
-    const {isLoading} = this.props;
+    const { isLoading } = this.props;
 
     return (
       <div>
@@ -30,6 +30,6 @@ export class StationList extends PureComponent {
         <Station>Stacja 10</Station>
         <Station>Stacja 11</Station>
       </div>
-    )
+    );
   }
 }
