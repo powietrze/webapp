@@ -9,14 +9,17 @@ import styles from './Station.css';
 
 export class Station extends PureComponent {
   static propTypes = {
+    id: PropTypes.string.isRequired,
     children: PropTypes.string.isRequired,
   };
 
   render() {
+    const { id, children } = this.props;
+
     return (
       <div className={styles.station}>
-        <Link to={`/station/${this.props.children}/`}>
-          {this.props.children}
+        <Link to={`/station/${id}/`}>
+          {children}
         </Link>
       </div>
     );

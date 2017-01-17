@@ -8,27 +8,19 @@ import { Station } from './Station';
 export class StationList extends PureComponent {
   static propTypes = {
     isLoading: PropTypes.bool.isRequired,
+    stations: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
   };
 
   render() {
-    const { isLoading } = this.props;
+    const { isLoading, stations } = this.props;
 
     return (
       <div>
-        Stacje:
         {isLoading && 'Ładuję...'}
-
-        <Station>Stacja 1</Station>
-        <Station>Stacja 2</Station>
-        <Station>Stacja 3</Station>
-        <Station>Stacja 4</Station>
-        <Station>Stacja 5</Station>
-        <Station>Stacja 6</Station>
-        <Station>Stacja 7</Station>
-        <Station>Stacja 8</Station>
-        <Station>Stacja 9</Station>
-        <Station>Stacja 10</Station>
-        <Station>Stacja 11</Station>
+        {!isLoading && stations.map(s => <Station key={s.id} id={s.id}>{s.name}</Station>)}
       </div>
     );
   }
