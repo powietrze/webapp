@@ -14,14 +14,15 @@ export class Main extends PureComponent {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     })).isRequired,
+    onStationSelect: PropTypes.func.isRequired,
   };
 
   render() {
-    const { isLoadingStations, stations } = this.props;
+    const { isLoadingStations, stations, onStationSelect } = this.props;
 
     return (
       <div>
-        <Map stations={stations} />
+        <Map stations={stations} onStationSelect={onStationSelect} />
         <StationList isLoading={isLoadingStations} stations={stations} />
       </div>
     );

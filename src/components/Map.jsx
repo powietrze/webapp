@@ -13,6 +13,8 @@ import { config } from '../config';
 import styles from './Map.css';
 
 
+const CLUSTER_IMAGE_URL = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m';
+
 export class Map extends PureComponent {
   static propTypes = {
     stations: PropTypes.arrayOf(PropTypes.shape({
@@ -20,6 +22,7 @@ export class Map extends PureComponent {
       lat: PropTypes.string.isRequired,
       lon: PropTypes.string.isRequired,
     })).isRequired,
+    onStationSelect: PropTypes.func.isRequired,
   };
 
   state = {
@@ -37,26 +40,6 @@ export class Map extends PureComponent {
     this.recreateMarkers(props.stations);
   }
 
-  recreateMarkers = (stations) => {
-    const { markers, googleMap } = this.state;
-
-    markers.map(m => m.setMap(null));
-
-    const newMarkers = googleMap ? stations.map(m => createMarker(googleMap, m)) : [];
-
-    if (googleMap) {
-      new MarkerClusterer( // eslint-disable-line no-new
-        googleMap,
-        newMarkers,
-        { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' },
-      );
-    }
-
-    this.setState({
-      markers: newMarkers,
-    });
-  };
-
   initializeMap = () => {
     this.state.googleMap = new window.google.maps.Map(this.mapNode, {
       disableDefaultUI: true,
@@ -71,6 +54,32 @@ export class Map extends PureComponent {
     this.recreateMarkers(this.props.stations);
   };
 
+  recreateMarkers = (stations) => {
+    const { markers, googleMap } = this.state;
+
+    markers.map(m => m.setMap(null));
+
+    const newMarkers = googleMap ?
+      stations.map(m => createMarker(googleMap, m, this.handleMarkerClick)) :
+      [];
+
+    if (googleMap) {
+      new MarkerClusterer( // eslint-disable-line no-new
+        googleMap,
+        newMarkers,
+        { imagePath: CLUSTER_IMAGE_URL },
+      );
+    }
+
+    this.setState({
+      markers: newMarkers,
+    });
+  };
+
+  handleMarkerClick = (id) => {
+    this.props.onStationSelect(id);
+  };
+
   saveNode = (node) => {
     this.mapNode = node;
   };
@@ -82,11 +91,16 @@ export class Map extends PureComponent {
   }
 }
 
-const createMarker = (map, station) => new google.maps.Marker({
-  map,
-  position: {
-    lat: Number(station.lat),
-    lng: Number(station.lon),
-  },
-});
+const createMarker = (map, station, onClick) => {
+  const marker = new google.maps.Marker({
+    map,
+    position: {
+      lat: Number(station.lat),
+      lng: Number(station.lon),
+    },
+    title: station.name,
+  });
+  marker.addListener('click', () => onClick(station.id));
+  return marker;
+};
 

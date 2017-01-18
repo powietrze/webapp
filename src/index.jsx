@@ -3,9 +3,10 @@
 
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import { Router, Route, IndexRoute } from 'react-router';
 import { createHistory } from 'history';
 
@@ -17,17 +18,22 @@ import {
 } from './components';
 
 
+const browserHistory = createHistory();
+
 const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || // eslint-disable-line no-underscore-dangle
   compose;
 const store = createStore(
-  stations,
-  composeEnhancers(applyMiddleware(thunk)),
+  combineReducers({
+    routing: routerReducer,
+    stations,
+  }),
+  composeEnhancers(applyMiddleware(thunk, routerMiddleware(browserHistory))),
 );
 
 const routes = (
   <Provider store={store}>
-    <Router history={createHistory()}>
+    <Router history={syncHistoryWithStore(browserHistory, store)}>
       <Route path={RootContainer.path} component={RootContainer}>
         <IndexRoute component={MainContainer} />
         <Route path={StationDetails.path} component={StationDetails} />
