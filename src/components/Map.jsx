@@ -1,4 +1,5 @@
 /* global google */
+/* global MarkerClusterer */
 
 
 import React, {
@@ -6,6 +7,7 @@ import React, {
   PropTypes,
 } from 'react';
 import Script from 'scriptjs';
+import '../vendor/MarkerClusterer';
 
 import { config } from '../config';
 import styles from './Map.css';
@@ -41,6 +43,14 @@ export class Map extends PureComponent {
     markers.map(m => m.setMap(null));
 
     const newMarkers = googleMap ? stations.map(m => createMarker(googleMap, m)) : [];
+
+    if (googleMap) {
+      new MarkerClusterer( // eslint-disable-line no-new
+        googleMap,
+        newMarkers,
+        { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' },
+      );
+    }
 
     this.setState({
       markers: newMarkers,
