@@ -21,7 +21,7 @@ export class Main extends PureComponent {
 
     return (
       <div>
-        <Map />
+        <Map stations={stations} />
         <StationList isLoading={isLoadingStations} stations={stations} />
       </div>
     );
