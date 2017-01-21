@@ -1,14 +1,17 @@
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import * as selectors from '../selectors/stations';
+import {
+  main as mainSelectors,
+  stations as stationsSelectors,
+} from '../selectors';
 import { Main } from './Main';
 import { StationDetails } from './StationDetails';
 
 
 const mapStateToProps = state => ({
-  isLoadingStations: selectors.isLoading(state),
-  stations: selectors.stations(state),
+  isLoadingStations: mainSelectors.isLoading(state),
+  stations: stationsSelectors.stations(state),
 });
 
 const mapDispatchToProps = dispatch => ({

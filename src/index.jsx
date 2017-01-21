@@ -10,7 +10,7 @@ import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-rou
 import { Router, Route, IndexRoute } from 'react-router';
 import { createHistory } from 'history';
 
-import { stations } from './reducers';
+import { main, stations } from './reducers';
 import {
   RootContainer,
   MainContainer,
@@ -26,6 +26,7 @@ const composeEnhancers =
 const store = createStore(
   combineReducers({
     routing: routerReducer,
+    main,
     stations,
   }),
   composeEnhancers(applyMiddleware(thunk, routerMiddleware(browserHistory))),
