@@ -9,9 +9,15 @@ export class StationDetails extends PureComponent {
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }),
+    onSetup: PropTypes.func.isRequired,
   };
 
   static path = '/station/:id/';
+
+  componentDidMount() {
+    const { onSetup, params } = this.props;
+    onSetup(params.id);
+  }
 
   render() {
     return (

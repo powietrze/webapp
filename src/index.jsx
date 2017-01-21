@@ -14,7 +14,7 @@ import { main, stations } from './reducers';
 import {
   RootContainer,
   MainContainer,
-  StationDetails,
+  StationDetailsContainer,
 } from './components';
 
 
@@ -37,7 +37,7 @@ const routes = (
     <Router history={syncHistoryWithStore(browserHistory, store)}>
       <Route path={RootContainer.path} component={RootContainer}>
         <IndexRoute component={MainContainer} />
-        <Route path={StationDetails.path} component={StationDetails} />
+        <Route path={StationDetailsContainer.path} component={StationDetailsContainer} />
       </Route>
     </Router>
   </Provider>
