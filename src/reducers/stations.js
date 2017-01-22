@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable';
+import { Map, fromJS, List } from 'immutable';
 
 import * as actions from '../actions';
 
@@ -18,7 +18,7 @@ export const stations = (state = initialState, action) => {
 
     case actions.FETCH_STATION_SENSORS_SUCCESS:
       return state.set('sensors', state.get('sensors').withMutations((s) => {
-        action.sensors.map(sensor => s.set(sensor.id, fromJS(sensor)));
+        action.sensors.map(sensor => s.set(sensor.id, fromJS(sensor).set('readings', new List())));
       }));
 
     case actions.FETCH_SENSOR_READINGS_SUCCESS:

@@ -1,3 +1,3 @@
 export * from './RootContainter';
 export * from './MainContainer';
-export * from './StationDetailsContainer';
+export * from './StationDetails';

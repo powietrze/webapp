@@ -2,6 +2,10 @@ import React, {
   PureComponent,
   PropTypes,
 } from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import { SensorPropType } from './propTypes';
+import { SensorList } from './SensorList';
 
 
 export class StationDetails extends PureComponent {
@@ -9,6 +13,8 @@ export class StationDetails extends PureComponent {
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }),
+    isLoading: PropTypes.bool.isRequired,
+    sensors: ImmutablePropTypes.listOf(SensorPropType).isRequired,
     onSetup: PropTypes.func.isRequired,
   };
 
@@ -20,10 +26,11 @@ export class StationDetails extends PureComponent {
   }
 
   render() {
+    const { isLoading, sensors } = this.props;
+
     return (
       <div>
-        STATION DETAILS
-        {this.props.params.id}
+        <SensorList isLoading={isLoading} sensors={sensors} />
       </div>
     );
   }
