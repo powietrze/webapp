@@ -7,6 +7,8 @@ import { stationDetails as stationDetailsSelectors } from '../../selectors';
 
 const mapStateToProps = (state, props) => ({
   isLoading: stationDetailsSelectors.isLoading(state),
+  name: stationDetailsSelectors.stationName(state, props.params.id),
+  street: stationDetailsSelectors.stationStreet(state, props.params.id),
   sensors: stationDetailsSelectors.stationSensors(state, props.params.id),
 });
 

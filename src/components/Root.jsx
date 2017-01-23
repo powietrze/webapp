@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 
 import './body.css';
+import { StationDetailsContainer } from './StationDetails';
 import { NavBar } from './NavBar';
 import styles from './Root.css';
 
@@ -14,6 +15,7 @@ export class Root extends PureComponent {
     router: PropTypes.shape({
       goBack: PropTypes.func.isRequired,
     }),
+    stationName: PropTypes.string,
     fetchStations: PropTypes.func.isRequired,
   };
 
@@ -28,12 +30,19 @@ export class Root extends PureComponent {
   };
 
   render() {
-    const { router } = this.props;
+    const { router, stationName } = this.props;
     const showBackButton = !router.isActive(Root.path, true);
+    const showStationName =
+      router.isActive(StationDetailsContainer.path.replace(':id', router.params.id));
+    const title = showStationName ? stationName : undefined;
 
     return (
       <div className={styles.root}>
-        <NavBar showBackButton={showBackButton} onPop={this.handlePop} />
+        <NavBar
+          showBackButton={showBackButton}
+          customTitle={title}
+          onPop={this.handlePop}
+        />
         {this.props.children}
       </div>
     );
