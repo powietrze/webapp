@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { Root } from './Root';
+import { RootRoute } from './RootRoute';
 import { stationDetails } from '../selectors';
 import { fetchStations } from '../actions';
 
@@ -12,4 +12,4 @@ const mapDispatchToProps = {
   fetchStations,
 };
 
-export const RootContainer = connect(mapStateToProps, mapDispatchToProps)(Root);
+export const RootContainer = connect(mapStateToProps, mapDispatchToProps)(RootRoute);

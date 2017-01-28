@@ -4,12 +4,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080/',
+    './src/index.jsx',
+  ],
   output: {
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle-[hash].js',
+    publicPath: '/',
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -18,6 +23,9 @@ module.exports = {
       GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
       API_HOST: JSON.stringify(process.env.API_HOST),
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
   module: {
     rules: [
@@ -26,13 +34,15 @@ module.exports = {
         include: [
           path.resolve(__dirname, 'src'),
         ],
-        loader: 'babel-loader',
+        exclude: /node_modules/,
+        loaders: ['babel-loader'],
       },
       {
         test: /\.css?$/,
         include: [
           path.resolve(__dirname, 'src'),
         ],
+        exclude: /node_modules/,
         use: [
           { loader: 'style-loader' },
           {
@@ -51,5 +61,11 @@ module.exports = {
       '.js',
       '.jsx',
     ],
+  },
+  devServer: {
+    host: 'localhost',
+    port: 8080,
+    historyApiFallback: true,
+    hot: true,
   },
 };

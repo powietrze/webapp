@@ -1,21 +1,18 @@
 /* eslint-env browser */
 
 
-import ReactDOM from 'react-dom';
 import React from 'react';
+import { render } from 'react-dom';
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
-import { Router, Route, IndexRoute } from 'react-router';
+
+import { routerReducer, routerMiddleware } from 'react-router-redux';
+
 import { createHistory } from 'history';
+import { AppContainer } from 'react-hot-loader';
 
 import { main, stationDetails, stations } from './reducers';
-import {
-  RootContainer,
-  MainContainer,
-  StationDetailsContainer,
-} from './components';
+import { Root } from './Root';
 
 
 const browserHistory = createHistory();
@@ -33,15 +30,25 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk, routerMiddleware(browserHistory))),
 );
 
-const routes = (
-  <Provider store={store}>
-    <Router history={syncHistoryWithStore(browserHistory, store)}>
-      <Route path={RootContainer.path} component={RootContainer}>
-        <IndexRoute component={MainContainer} />
-        <Route path={StationDetailsContainer.path} component={StationDetailsContainer} />
-      </Route>
-    </Router>
-  </Provider>
+
+render(
+  <AppContainer>
+    <Root store={store} browserHistory={browserHistory} />
+  </AppContainer>,
+  document.getElementById('root'),
 );
 
-ReactDOM.render(routes, document.getElementById('root'));
+if (module.hot) {
+  module.hot.accept('./Root', () => {
+    const RootContainer = require('./Root').Root; // eslint-disable-line global-require
+    render(
+      <AppContainer>
+        <RootContainer
+          store={store}
+          browserHistory={browserHistory}
+        />
+      </AppContainer>,
+      document.getElementById('root'),
+    );
+  });
+}

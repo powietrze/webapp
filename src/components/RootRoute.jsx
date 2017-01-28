@@ -6,10 +6,10 @@ import React, {
 import './body.css';
 import { StationDetailsContainer } from './StationDetails';
 import { NavBar } from './NavBar';
-import styles from './Root.css';
+import styles from './RootRoute.css';
 
 
-export class Root extends PureComponent {
+export class RootRoute extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     router: PropTypes.shape({
@@ -31,7 +31,7 @@ export class Root extends PureComponent {
 
   render() {
     const { router, stationName } = this.props;
-    const showBackButton = !router.isActive(Root.path, true);
+    const showBackButton = !router.isActive(RootRoute.path, true);
     const showStationName =
       router.isActive(StationDetailsContainer.path.replace(':id', router.params.id));
     const title = showStationName ? stationName : undefined;
