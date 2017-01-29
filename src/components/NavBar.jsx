@@ -17,12 +17,17 @@ export class NavBar extends PureComponent {
 
   render() {
     const { showBackButton, customTitle, onPop } = this.props;
-    const title = customTitle || 'Powietrze';
+    const title = customTitle || 'Jakość Powietrza';
 
     return (
-      <div className={styles.navBar}>
-        {showBackButton && <button onClick={onPop}>back</button>}
-        {title}
+      <div className={styles.NavBar}>
+        <div className={styles.ButtonWrapper}>
+          {showBackButton && <button onClick={onPop} className={styles.BackButton}>{'<'}</button>}
+        </div>
+        <div className={styles.TitleWrapper}>
+          <span className={styles.Title}>{title}</span>
+        </div>
+        <div className={styles.ButtonWrapper} />
       </div>
     );
   }
