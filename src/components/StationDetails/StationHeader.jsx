@@ -3,6 +3,8 @@ import React, {
   PropTypes,
 } from 'react';
 
+import styles from './StationHeader.css';
+
 
 export class StationHeader extends PureComponent {
   static propTypes = {
@@ -14,16 +16,12 @@ export class StationHeader extends PureComponent {
     const { name, street } = this.props;
 
     return (
-      <div>
-        <span>Nazwa:</span>
-        <span>{name}</span>
+      <div className={styles.StationHeader}>
+        <span className={styles.Title}>Pełna nazwa:</span>
+        <span className={styles.Value}>{name}</span>
 
-        {street &&
-        <div>
-          <span>Ulica:</span>
-          <span>{street}</span>
-        </div>
-        }
+        {street && <span className={styles.Title}>Ulica:</span>}
+        {street && <span className={styles.Value}>{street}</span>}
       </div>
     );
   }

@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080/',
+    'webpack-dev-server/client?http://localhost:8000/',
     './src/index.jsx',
   ],
   output: {
@@ -64,7 +64,7 @@ module.exports = {
   },
   devServer: {
     host: 'localhost',
-    port: 8080,
+    port: 8000,
     historyApiFallback: true,
     hot: true,
   },

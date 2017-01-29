@@ -18,6 +18,7 @@ export class NavBar extends PureComponent {
   render() {
     const { showBackButton, customTitle, onPop } = this.props;
     const title = customTitle || 'Powietrze';
+
     return (
       <div className={styles.navBar}>
         {showBackButton && <button onClick={onPop}>back</button>}

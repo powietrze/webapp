@@ -1,0 +1,15 @@
+@import '../constants.css';
+
+.StationHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.Title {
+  composes: Title from '../constants.css';
+}
+
+.Value {
+  composes: BodyText from '../constants.css';
+  margin-bottom: 0.5rem;
+}

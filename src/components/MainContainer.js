@@ -6,7 +6,7 @@ import {
   stations as stationsSelectors,
 } from '../selectors';
 import { Main } from './Main';
-import { StationDetails } from './StationDetails';
+import { StationDetailsContainer } from './StationDetails';
 
 
 const mapStateToProps = state => ({
@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onStationSelect: id => dispatch(push(StationDetails.path.replace(':id', id))),
+  onStationSelect: id => dispatch(push(StationDetailsContainer.path.replace(':id', id))),
 });
 
 export const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);

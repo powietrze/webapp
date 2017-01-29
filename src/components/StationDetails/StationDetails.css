@@ -1,0 +1,5 @@
+.StationDetails {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 16px 0;
+}

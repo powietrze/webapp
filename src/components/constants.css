@@ -1,9 +1,35 @@
 :root {
   --white: #ffffff;
+  --gray: #A4A4A4;
   --black: #000000;
   --font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 
   --font-size-small: 0.75rem;
   --font-size-normal: 1rem;
   --font-size-big: 2rem;
+
+  --font-weight-light: 200;
+  --font-weight-regular: 400;
+}
+
+.light {
+  font-weight: 200;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.Title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-light);
+  color: var(--black);
+}
+
+.BodyText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-regular);
+  color: var(--black);
 }

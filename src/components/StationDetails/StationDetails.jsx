@@ -7,6 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { SensorPropType } from './propTypes';
 import { StationHeader } from './StationHeader';
 import { SensorList } from './SensorList';
+import styles from './StationDetails.css';
 
 
 export class StationDetails extends PureComponent {
@@ -32,7 +33,7 @@ export class StationDetails extends PureComponent {
     const { name, street, isLoading, sensors } = this.props;
 
     return (
-      <div>
+      <div className={styles.StationDetails}>
         <StationHeader name={name} street={street} />
         <SensorList isLoading={isLoading} sensors={sensors} />
       </div>

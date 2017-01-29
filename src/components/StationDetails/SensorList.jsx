@@ -6,6 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { SensorPropType } from './propTypes';
 import { Sensor } from './Sensor';
+import styles from './SensorList.css';
 
 
 export class SensorList extends PureComponent {
@@ -17,8 +18,8 @@ export class SensorList extends PureComponent {
   render() {
     const { isLoading, sensors } = this.props;
     return (
-      <div>
-        Sensors:
+      <div className={styles.SensorList}>
+        <span className={styles.Title}>Odczyty:</span>
         {isLoading && 'Ładuję...'}
         {!isLoading &&
         sensors.map(s => (
