@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  webapp:
+    build: .
+    environment:
+     - DB_HOST=db
+     - DB_PORT=28015
+    volumes:
+     - ./dist:/app/dist
+    mem_limit: 256M
