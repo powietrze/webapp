@@ -1,0 +1,12 @@
+@import "./constants.css";
+
+.StationList {
+  display: flex;
+  flex-direction: column;
+}
+
+.Title {
+  composes: Title from './constants.css';
+  margin: 0 16px;
+  margin-bottom: 0.5rem;
+}

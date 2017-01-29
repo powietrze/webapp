@@ -3,4 +3,5 @@
 .map {
   height: 100vw;
   max-height: 500px;
+  margin-bottom: 1rem;
 }
