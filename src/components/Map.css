@@ -2,6 +2,5 @@
 
 .map {
   height: 100vw;
-
-  border: 1pt solid var(--black);
+  max-height: 500px;
 }
