@@ -8,7 +8,7 @@ import styles from './StationHeader.css';
 
 export class StationHeader extends PureComponent {
   static propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     street: PropTypes.string,
   };
 

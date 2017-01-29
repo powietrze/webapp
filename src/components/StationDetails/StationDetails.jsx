@@ -15,7 +15,7 @@ export class StationDetails extends PureComponent {
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }),
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     street: PropTypes.string,
     isLoading: PropTypes.bool.isRequired,
     sensors: ImmutablePropTypes.listOf(SensorPropType).isRequired,
