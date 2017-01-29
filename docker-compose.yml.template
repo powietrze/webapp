@@ -4,8 +4,8 @@ services:
   webapp:
     build: .
     environment:
-     - DB_HOST=db
-     - DB_PORT=28015
+     - GOOGLE_MAPS_API_KEY=<key>
+     - API_HOST=<host>
     volumes:
      - ./dist:/app/dist
     mem_limit: 256M
