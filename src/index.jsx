@@ -8,14 +8,14 @@ import thunk from 'redux-thunk';
 
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 
-import { createHistory } from 'history';
+import { createHashHistory } from 'history';
 import { AppContainer } from 'react-hot-loader';
 
 import { main, stationDetails, stations } from './reducers';
 import { Root } from './Root';
 
 
-const browserHistory = createHistory();
+const browserHistory = createHashHistory();
 
 const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || // eslint-disable-line no-underscore-dangle
