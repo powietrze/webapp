@@ -6,6 +6,7 @@ import * as actions from '../actions';
 const initialState = new Map({
   isLoading: false,
   error: null,
+  searchQuery: '',
 });
 
 export const main = (state = initialState, action) => {
@@ -22,6 +23,9 @@ export const main = (state = initialState, action) => {
         s.set('isLoading', false);
         s.set('error', action.error);
       });
+
+    case actions.STATION_SEARCH:
+      return state.set('searchQuery', action.query);
 
     default:
       return state;

@@ -52,7 +52,6 @@ export class RootRoute extends PureComponent {
 }
 
 function mountGoogleAnalytics() {
-  console.log('config.googleAnalyticsTrackingId', config.googleAnalyticsTrackingId)
   if (config.googleAnalyticsTrackingId) {
     /* eslint-disable */
     (function (i, s, o, g, r, a, m) {

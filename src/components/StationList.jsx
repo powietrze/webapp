@@ -22,7 +22,6 @@ export class StationList extends PureComponent {
     return (
       <div className={styles.StationList}>
         {isLoading && 'Ładuję...'}
-        {!isLoading && <span className={styles.Title}>Stacje:</span>}
         {!isLoading && stations.map(s => <Station key={s.id} id={s.id}>{s.name}</Station>)}
       </div>
     );

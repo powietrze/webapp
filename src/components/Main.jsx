@@ -4,7 +4,9 @@ import React, {
 } from 'react';
 
 import { Map } from './Map';
+import { StationSearchInput } from './Main/StationSearchInput';
 import { StationList } from './StationList';
+import styles from './Main/Main.css';
 
 
 export class Main extends PureComponent {
@@ -14,15 +16,27 @@ export class Main extends PureComponent {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     })).isRequired,
+    searchQuery: PropTypes.string.isRequired,
     onStationSelect: PropTypes.func.isRequired,
+    onStationSearch: PropTypes.func.isRequired,
   };
 
   render() {
-    const { isLoadingStations, stations, onStationSelect } = this.props;
+    const {
+      isLoadingStations,
+      stations,
+      searchQuery,
+      onStationSelect,
+      onStationSearch,
+    } = this.props;
 
     return (
-      <div>
+      <div className={styles.Main}>
         <Map stations={stations} onStationSelect={onStationSelect} />
+        <StationSearchInput
+          value={searchQuery}
+          onChange={onStationSearch}
+        />
         <StationList isLoading={isLoadingStations} stations={stations} />
       </div>
     );

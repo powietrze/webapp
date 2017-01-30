@@ -1,0 +1,8 @@
+.StationSearchInput {
+  composes: BodyText from '../constants.css';
+  border: 1pt solid black;
+  margin: 0 12pt;
+  padding: 0.5rem;
+  border-radius: 0;
+  -webkit-appearance: none; /*iphone safari fix*/
+}
