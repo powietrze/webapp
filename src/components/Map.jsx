@@ -30,6 +30,8 @@ export class Map extends PureComponent {
     markers: [],
   };
 
+  clusterer = null;
+
   componentDidMount() {
     Script(`https://maps.googleapis.com/maps/api/js?key=${config.googleMapsApiKey}`, () => {
       this.initializeMap();
@@ -58,13 +60,16 @@ export class Map extends PureComponent {
     const { markers, googleMap } = this.state;
 
     markers.map(m => m.setMap(null));
+    if (this.clusterer) {
+      this.clusterer.clearMarkers();
+    }
 
     const newMarkers = googleMap ?
       stations.map(m => createMarker(googleMap, m, this.handleMarkerClick)) :
       [];
 
     if (googleMap) {
-      new MarkerClusterer( // eslint-disable-line no-new
+      this.clusterer = new MarkerClusterer( // eslint-disable-line no-new
         googleMap,
         newMarkers,
         { imagePath: CLUSTER_IMAGE_URL },
