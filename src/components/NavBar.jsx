@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 
 import { Icon } from './Icon';
+import { NavBarButton } from './NavBar/NavBarButton';
 import styles from './NavBar.css';
 
 
@@ -24,9 +25,7 @@ export class NavBar extends PureComponent {
       <div className={styles.NavBar}>
         <div className={styles.ButtonWrapper}>
           {showBackButton &&
-          <button onClick={onPop} className={styles.BackButton}>
-            <Icon type="arrow-left" />
-          </button>
+          <NavBarButton onClick={onPop}><Icon type="arrow-left" /></NavBarButton>
           }
         </div>
         <div className={styles.TitleWrapper}>

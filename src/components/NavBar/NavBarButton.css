@@ -1,0 +1,14 @@
+.NavBarButton {
+  width: 30pt;
+  height: 30pt;
+
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
