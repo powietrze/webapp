@@ -5,6 +5,7 @@ import React, {
   PropTypes,
 } from 'react';
 
+import { Icon } from './Icon';
 import styles from './NavBar.css';
 
 
@@ -22,7 +23,11 @@ export class NavBar extends PureComponent {
     return (
       <div className={styles.NavBar}>
         <div className={styles.ButtonWrapper}>
-          {showBackButton && <button onClick={onPop} className={styles.BackButton}>{'<'}</button>}
+          {showBackButton &&
+          <button onClick={onPop} className={styles.BackButton}>
+            <Icon type="arrow-left" />
+          </button>
+          }
         </div>
         <div className={styles.TitleWrapper}>
           <span className={styles.Title}>{title}</span>

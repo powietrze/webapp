@@ -55,6 +55,14 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.svg?$/,
+        include: [
+          path.resolve(__dirname, 'src'),
+        ],
+        exclude: /node_modules/,
+        loaders: ['svg-react-loader'],
+      },
     ],
   },
   resolve: {
