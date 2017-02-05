@@ -144,3 +144,11 @@ export const fetchSensorReadings = sensorId => (dispatch) => {
     .then(readings => dispatch(fetchSensorReadingsSuccess(sensorId, readings)))
     .catch(e => dispatch(fetchSensorReadingsFailure(e)));
 };
+
+
+export const TOGGLE_FAVORITE_STATION = 'TOGGLE_FAVORITE_STATION';
+
+export const toggleFavoriteStation = stationId => ({
+  type: TOGGLE_FAVORITE_STATION,
+  stationId,
+});

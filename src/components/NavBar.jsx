@@ -14,11 +14,12 @@ export class NavBar extends PureComponent {
   static propTypes = {
     showBackButton: PropTypes.bool.isRequired,
     customTitle: PropTypes.string,
+    rightButton: PropTypes.node,
     onPop: PropTypes.func.isRequired,
   };
 
   render() {
-    const { showBackButton, customTitle, onPop } = this.props;
+    const { showBackButton, customTitle, rightButton, onPop } = this.props;
     const title = customTitle || 'Czym Oddychamy';
 
     return (
@@ -31,7 +32,9 @@ export class NavBar extends PureComponent {
         <div className={styles.TitleWrapper}>
           <span className={styles.Title}>{title}</span>
         </div>
-        <div className={styles.ButtonWrapper} />
+        <div className={styles.ButtonWrapper}>
+          {rightButton}
+        </div>
       </div>
     );
   }

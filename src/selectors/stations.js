@@ -28,3 +28,5 @@ function removePolishDiacritics(string) {
   }
   return string;
 }
+
+export const isFavorited = (state, stationId) => !!state.stations.getIn(['favorites', stationId]);

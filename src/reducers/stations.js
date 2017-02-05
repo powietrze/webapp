@@ -1,4 +1,4 @@
-import { Map, fromJS, List } from 'immutable';
+import { Map, Set, fromJS, List } from 'immutable';
 
 import * as actions from '../actions';
 
@@ -6,6 +6,7 @@ import * as actions from '../actions';
 const initialState = new Map({
   stations: new Map(),
   sensors: new Map(),
+  favorites: Set(),
 });
 
 export const stations = (state = initialState, action) => {
@@ -23,6 +24,15 @@ export const stations = (state = initialState, action) => {
 
     case actions.FETCH_SENSOR_READINGS_SUCCESS:
       return state.setIn(['sensors', action.sensorId, 'readings'], fromJS(action.readings));
+
+    case actions.TOGGLE_FAVORITE_STATION: {
+      const isFavorited = !!state.getIn(['favorites', action.stationId]);
+      const favorites = state.get('favorites');
+      const newFavorites = isFavorited ?
+        favorites.remove(action.stationId) :
+        favorites.add(action.stationId);
+      return state.set('favorites', newFavorites);
+    }
 
     default:
       return state;

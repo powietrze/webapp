@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 
 import ArrowLeft from './arrow-left.svg';
+import StarFilled from './star-filled.svg';
+import StarOutline from './star-outline.svg';
 import styles from './Icon.css';
 
 
@@ -13,8 +15,22 @@ export class Icon extends React.PureComponent {
   };
 
   render() {
-    return (
-      <ArrowLeft className={styles.Icon} />
-    );
+    let IconType;
+    switch (this.props.type) {
+      case (IconTypes[0]):
+        IconType = ArrowLeft;
+        break;
+      case (IconTypes[1]):
+        IconType = StarFilled;
+        break;
+      case (IconTypes[2]):
+        IconType = StarOutline;
+        break;
+      default:
+        IconType = ArrowLeft;
+        break;
+    }
+
+    return <IconType className={styles.Icon} />;
   }
 }

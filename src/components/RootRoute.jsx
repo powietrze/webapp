@@ -7,6 +7,8 @@ import './body.css';
 import { config } from '../config';
 import { StationDetailsContainer } from './StationDetails';
 import { NavBar } from './NavBar';
+import { NavBarButton } from './NavBar/NavBarButton';
+import { Icon } from './Icon';
 import styles from './RootRoute.css';
 
 
@@ -17,7 +19,9 @@ export class RootRoute extends PureComponent {
       goBack: PropTypes.func.isRequired,
     }),
     stationName: PropTypes.string,
+    isStationFavorited: PropTypes.bool,
     fetchStations: PropTypes.func.isRequired,
+    onToggleFavoriteStation: PropTypes.func.isRequired,
   };
 
   static path = '/';
@@ -32,23 +36,37 @@ export class RootRoute extends PureComponent {
   };
 
   render() {
-    const { router, stationName } = this.props;
+    const { router, stationName, isStationFavorited } = this.props;
     const showBackButton = !router.isActive(RootRoute.path, true);
-    const showStationName =
+    const isStationRouteActive =
       router.isActive(StationDetailsContainer.path.replace(':id', router.params.id));
-    const title = showStationName ? stationName : undefined;
+    const title = isStationRouteActive ? stationName : undefined;
+    const rightButton = isStationRouteActive ?
+      (
+        <NavBarButton onClick={this.handleToggleFavoriteStation}>
+          <Icon type={isStationFavorited ? 'star-filled' : 'star-outline'} />
+        </NavBarButton>
+      ) :
+      null;
 
     return (
       <div className={styles.root}>
         <NavBar
           showBackButton={showBackButton}
           customTitle={title}
+          rightButton={rightButton}
           onPop={this.handlePop}
         />
         {this.props.children}
       </div>
     );
   }
+
+  handleToggleFavoriteStation = () => {
+    const { router, onToggleFavoriteStation } = this.props;
+    const stationId = router.params.id;
+    onToggleFavoriteStation(stationId);
+  };
 }
 
 function mountGoogleAnalytics() {
