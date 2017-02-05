@@ -30,3 +30,13 @@ function removePolishDiacritics(string) {
 }
 
 export const isFavorited = (state, stationId) => !!state.stations.getIn(['favorites', stationId]);
+
+export const favoritedStationsIds = state => state.stations.get('favorites');
+
+export const favoritedStations = (state) => {
+  const stationsMap = state.stations.get('stations');
+  const favoritedIds = favoritedStationsIds(state);
+  return favoritedIds
+    .map(id => stationsMap.get(id))
+    .sort((a, b) => a.get('name').localeCompare(b.get('name')));
+};

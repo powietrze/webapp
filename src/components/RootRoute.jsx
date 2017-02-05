@@ -20,6 +20,7 @@ export class RootRoute extends PureComponent {
     }),
     stationName: PropTypes.string,
     isStationFavorited: PropTypes.bool,
+    setup: PropTypes.func.isRequired,
     fetchStations: PropTypes.func.isRequired,
     onToggleFavoriteStation: PropTypes.func.isRequired,
   };
@@ -27,6 +28,7 @@ export class RootRoute extends PureComponent {
   static path = '/';
 
   componentDidMount = () => {
+    this.props.setup();
     this.props.fetchStations();
     mountGoogleAnalytics();
   };

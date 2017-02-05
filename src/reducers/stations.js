@@ -11,6 +11,9 @@ const initialState = new Map({
 
 export const stations = (state = initialState, action) => {
   switch (action.type) {
+    case actions.LOAD_FAVORITED:
+      return state.set('favorites', Set(action.favoritedIds));
+
     case actions.FETCH_STATIONS_SUCCESS:
       return state.set('stations', normalizedStations(action.stations));
 

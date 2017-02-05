@@ -1,4 +1,27 @@
 import * as network from '../network';
+import { stations as stationSelectors } from '../selectors';
+
+
+export const SETUP = 'SETUP';
+export const setup = stationId => ({
+  type: SETUP,
+  stationId,
+});
+
+export const setupRequest = () => (dispatch) => {
+  dispatch(setup());
+
+  const ids = JSON.parse(localStorage.getItem('favoritedStationsIds'));
+  if (ids) {
+    dispatch(loadFavorited(ids));
+  }
+};
+
+export const LOAD_FAVORITED = 'LOAD_FAVORITED';
+export const loadFavorited = favoritedIds => ({
+  type: LOAD_FAVORITED,
+  favoritedIds,
+});
 
 
 export const FETCH_STATIONS_REQUEST = 'FETCH_STATIONS_REQUEST';
@@ -152,3 +175,12 @@ export const toggleFavoriteStation = stationId => ({
   type: TOGGLE_FAVORITE_STATION,
   stationId,
 });
+
+export const toggleFavoriteStationRequest = stationId => (dispatch, getState) => {
+  dispatch(toggleFavoriteStation(stationId));
+
+  localStorage.setItem(
+    'favoritedStationsIds',
+    JSON.stringify(stationSelectors.favoritedStationsIds(getState())),
+  );
+};

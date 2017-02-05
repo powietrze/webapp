@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { RootRoute } from './RootRoute';
 import { stationDetails, stations } from '../selectors';
-import { fetchStations, toggleFavoriteStation } from '../actions';
+import { setupRequest, fetchStations, toggleFavoriteStationRequest } from '../actions';
 
 const mapStateToProps = (state, props) => ({
   stationName: stationDetails.stationName(state, props.router.params.id),
@@ -10,8 +10,9 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = {
+  setup: setupRequest,
   fetchStations,
-  onToggleFavoriteStation: toggleFavoriteStation,
+  onToggleFavoriteStation: toggleFavoriteStationRequest,
 };
 
 export const RootContainer = connect(mapStateToProps, mapDispatchToProps)(RootRoute);
