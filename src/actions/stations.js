@@ -14,8 +14,42 @@ export const setupRequest = () => (dispatch) => {
   const ids = JSON.parse(localStorage.getItem('favoritedStationsIds'));
   if (ids) {
     dispatch(loadFavorited(ids));
+    loadFavorites(ids)(dispatch);
   }
 };
+
+
+const loadFavorites = ids => (dispatch) => {
+  dispatch(loadFavoritesRequest());
+
+  return Promise.all(ids.map(i => loadFullStationData(i)(dispatch)))
+    .then(() => dispatch(loadFavoritesSuccess()))
+    .catch(() => dispatch(loadFavoritesFailure()));
+};
+
+export const LOAD_FAVORITED_REQUEST = 'LOAD_FAVORITED_REQUEST';
+export const LOAD_FAVORITED_SUCCESS = 'LOAD_FAVORITED_SUCCESS';
+export const LOAD_FAVORITED_FAILURE = 'LOAD_FAVORITED_FAILURE';
+const loadFavoritesRequest = () => ({
+  type: LOAD_FAVORITED_REQUEST,
+});
+const loadFavoritesSuccess = () => ({
+  type: LOAD_FAVORITED_SUCCESS,
+});
+const loadFavoritesFailure = () => ({
+  type: LOAD_FAVORITED_FAILURE,
+});
+
+
+const loadFullStationData = id => dispatch => Promise
+    .all([
+      fetchStation(id)(dispatch),
+      fetchStationSensors(id)(dispatch),
+    ])
+    .then(([_, sensorsAction]) => // eslint-disable-line no-unused-vars
+      Promise.all(sensorsAction.sensors.map(sensor => fetchSensorReadings(sensor.id)(dispatch))),
+    );
+
 
 export const LOAD_FAVORITED = 'LOAD_FAVORITED';
 export const loadFavorited = favoritedIds => ({

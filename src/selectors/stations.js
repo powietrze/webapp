@@ -1,3 +1,6 @@
+import { stationSensors } from './stationDetails';
+
+
 export const stations = (state) => {
   const stationsMap = state.stations.get('stations');
   const queryString = state.main.get('searchQuery').trim().toLowerCase();
@@ -33,10 +36,15 @@ export const isFavorited = (state, stationId) => !!state.stations.getIn(['favori
 
 export const favoritedStationsIds = state => state.stations.get('favorites');
 
+export const isLoadingFavoritedStations = state => state.stations.get('isLoadingFavoritedStations');
+
 export const favoritedStations = (state) => {
   const stationsMap = state.stations.get('stations');
   const favoritedIds = favoritedStationsIds(state);
   return favoritedIds
     .map(id => stationsMap.get(id))
-    .sort((a, b) => a.get('name').localeCompare(b.get('name')));
+    .filter(station => !!station)
+    .map(station => station && station.set('sensors', stationSensors(state, station.get('id'))))
+    .sort((a, b) => a.get('name').localeCompare(b.get('name')))
+    .toList();
 };

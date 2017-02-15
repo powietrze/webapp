@@ -1,0 +1,19 @@
+@import '../constants.css';
+
+.FavoritedStations {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 16px 0;
+}
+
+.Title {
+  composes: Title from '../constants.css';
+  margin-bottom: 0.5rem;
+}
+
+.Loading {
+  position: absolute;
+  right: 16px;
+
+  composes: Title from '../constants.css';
+}

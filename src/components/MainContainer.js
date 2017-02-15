@@ -12,6 +12,8 @@ import { StationDetailsContainer } from './StationDetails';
 
 const mapStateToProps = state => ({
   isLoadingStations: mainSelectors.isLoading(state),
+  isLoadingFavoritedStations: stationsSelectors.isLoadingFavoritedStations(state),
+  favoritedStations: stationsSelectors.favoritedStations(state),
   stations: stationsSelectors.stations(state),
   searchQuery: mainSelectors.searchQuery(state),
 });

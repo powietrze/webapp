@@ -1,0 +1,11 @@
+@import '../constants.css';
+
+.FavoritedStation {
+  display: flex;
+  flex-direction: column;
+}
+
+.Name {
+  composes: BodyText from '../constants.css';
+  margin-bottom: 0.5rem;
+}

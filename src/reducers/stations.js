@@ -7,12 +7,20 @@ const initialState = new Map({
   stations: new Map(),
   sensors: new Map(),
   favorites: Set(),
+  isLoadingFavoritedStations: false,
 });
 
 export const stations = (state = initialState, action) => {
   switch (action.type) {
     case actions.LOAD_FAVORITED:
       return state.set('favorites', Set(action.favoritedIds));
+
+    case actions.LOAD_FAVORITED_REQUEST:
+      return state.set('isLoadingFavoritedStations', true);
+    case actions.LOAD_FAVORITED_SUCCESS:
+      return state.set('isLoadingFavoritedStations', false);
+    case actions.LOAD_FAVORITED_FAILURE:
+      return state.set('isLoadingFavoritedStations', false);
 
     case actions.FETCH_STATIONS_SUCCESS:
       return state.set('stations', normalizedStations(action.stations));
